@@ -1,0 +1,228 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ffffff"
+    tools:context="com.example.arib.mathmountain.FullscreenActivity">
+
+    <!-- The primary full-screen view. This can be replaced with whatever view
+         is needed to present your content, e.g. VideoView, SurfaceView,
+         TextureView, etc. -->
+    <!-- ID IS @+/fullscreen_content -->
+
+    <!-- This FrameLayout insets its children based on system windows using
+         android:fitsSystemWindows. -->
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fitsSystemWindows="true"
+        android:textAlignment="center">
+
+
+
+        <Button
+            android:layout_width="94dp"
+            android:layout_height="100dp"
+            android:text="New Text"
+            android:id="@+id/first_choice"
+            android:layout_gravity="start|bottom"
+            android:gravity="center"
+            android:onClick="firstSelected"
+            android:textStyle="bold"
+            android:background="#ffffff" />
+
+        <Button
+            android:layout_width="94dp"
+            android:layout_height="100dp"
+            android:layout_marginStart="94dp"
+            android:text="New Text"
+            android:onClick="secondSelected"
+            android:id="@+id/second_choice"
+            android:layout_gravity="left|bottom"
+            android:gravity="center"
+            android:textStyle="bold"
+            android:background="#ffffff" />
+        <Button
+            android:layout_width="94dp"
+            android:layout_height="100dp"
+            android:layout_marginStart="188dp"
+            android:text="New Text"
+            android:onClick="thirdSelected"
+            android:id="@+id/third_choice"
+            android:layout_gravity="start|bottom"
+            android:gravity="center"
+            android:textStyle="bold"
+            android:background="#ffffff" />
+        <Button
+            android:layout_width="93dp"
+            android:layout_height="100dp"
+            android:layout_marginStart="282dp"
+            android:text="New Text"
+            android:onClick="fourthSelected"
+            android:id="@+id/fourth_choice"
+            android:layout_gravity="start|bottom"
+            android:gravity="center"
+            android:textStyle="bold"
+            android:background="#ffffff" />
+
+        <TextView
+            android:layout_width="94dp"
+            android:layout_height="100dp"
+            android:layout_marginBottom="100dp"
+            android:layout_gravity="start|bottom"
+            android:textAlignment="center"
+            android:textStyle="bold"
+            android:background="#ffffff" />
+
+        <TextView
+            android:layout_width="94dp"
+            android:layout_height="100dp"
+            android:layout_marginBottom="100dp"
+            android:layout_marginStart="94dp"
+            android:layout_gravity="start|bottom"
+            android:textAlignment="center"
+            android:textStyle="bold"
+            android:background="#ffffff" />
+        <TextView
+            android:layout_width="94dp"
+            android:layout_height="100dp"
+            android:layout_marginBottom="100dp"
+            android:layout_marginStart="188dp"
+            android:layout_gravity="start|bottom"
+            android:textAlignment="center"
+            android:textStyle="bold"
+            android:background="#ffffff" />
+        <TextView
+            android:layout_width="93dp"
+            android:layout_height="100dp"
+            android:layout_marginBottom="100dp"
+            android:layout_marginStart="282dp"
+            android:layout_gravity="start|bottom"
+            android:textAlignment="center"
+            android:textStyle="bold"
+            android:background="#ffffff" />
+        <TextView
+            android:layout_width="94dp"
+            android:layout_height="100dp"
+            android:layout_marginBottom="200dp"
+            android:layout_gravity="start|bottom"
+            android:textAlignment="center"
+            android:textStyle="bold"
+            android:background="#ffffff" />
+
+        <TextView
+            android:layout_width="94dp"
+            android:layout_height="100dp"
+            android:layout_marginBottom="200dp"
+            android:layout_marginStart="94dp"
+            android:layout_gravity="start|bottom"
+            android:textAlignment="center"
+            android:textStyle="bold"
+            android:background="#ffffff" />
+        <TextView
+            android:layout_width="94dp"
+            android:layout_height="100dp"
+            android:layout_marginBottom="200dp"
+            android:layout_marginStart="188dp"
+            android:layout_gravity="start|bottom"
+            android:textAlignment="center"
+            android:textStyle="bold"
+            android:background="#ffffff" />
+        <TextView
+            android:layout_width="93dp"
+            android:layout_height="100dp"
+            android:layout_marginBottom="200dp"
+            android:layout_marginStart="282dp"
+            android:layout_gravity="start|bottom"
+            android:textAlignment="center"
+            android:textStyle="bold"
+            android:background="#ffffff" />
+        <TextView
+            android:layout_width="94dp"
+            android:layout_height="100dp"
+            android:layout_marginBottom="300dp"
+            android:layout_gravity="start|bottom"
+            android:textAlignment="center"
+            android:textStyle="bold"
+            android:background="#ffffff" />
+
+        <TextView
+            android:layout_width="94dp"
+            android:layout_height="100dp"
+            android:layout_marginBottom="300dp"
+            android:layout_marginStart="94dp"
+            android:layout_gravity="start|bottom"
+            android:textAlignment="center"
+            android:textStyle="bold"
+            android:background="#ffffff" />
+        <TextView
+            android:layout_width="94dp"
+            android:layout_height="100dp"
+            android:layout_marginBottom="300dp"
+            android:layout_marginStart="188dp"
+            android:layout_gravity="start|bottom"
+            android:textAlignment="center"
+            android:textStyle="bold"
+            android:background="#ffffff" />
+        <TextView
+            android:layout_width="93dp"
+            android:layout_height="100dp"
+            android:layout_marginBottom="300dp"
+            android:layout_marginStart="282dp"
+            android:layout_gravity="start|bottom"
+            android:textAlignment="center"
+            android:textStyle="bold"
+            android:background="#ffffff" />
+        <TextView
+            android:layout_width="94dp"
+            android:layout_height="100dp"
+            android:layout_marginBottom="400dp"
+            android:layout_gravity="start|bottom"
+            android:textAlignment="center"
+            android:textStyle="bold"
+            android:background="#ffffff" />
+
+        <TextView
+            android:layout_width="94dp"
+            android:layout_height="100dp"
+            android:layout_marginBottom="400dp"
+            android:layout_marginStart="94dp"
+            android:layout_gravity="start|bottom"
+            android:textAlignment="center"
+            android:textStyle="bold"
+            android:background="#ffffff" />
+        <Button
+            android:layout_width="94dp"
+            android:layout_height="100dp"
+            android:layout_marginBottom="400dp"
+            android:layout_marginStart="188dp"
+            android:layout_gravity="start|bottom"
+            android:textAlignment="center"
+            android:id="@+id/start"
+            android:text="Start"
+            android:background="#ffffff"
+            android:onClick="startGame"
+            style="?android:attr/borderlessButtonStyle"/>
+        <TextView
+            android:layout_width="93dp"
+            android:layout_height="100dp"
+            android:layout_marginBottom="400dp"
+            android:layout_marginStart="282dp"
+            android:layout_gravity="start|bottom"
+            android:id="@+id/questionText"
+            android:textAlignment="center"
+            android:textStyle="bold"
+            android:background="#ffffff" />
+
+    </FrameLayout>
+
+    <Chronometer
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/fullscreen_content"
+        android:layout_gravity="center_horizontal|top"
+        android:textSize="20dp"
+        android:textColor="#ffffff"
+        android:background="#000000" />
+
+</FrameLayout>
