@@ -35,6 +35,8 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mainrel);
         level = 1;
+        TextView levelView = (TextView) findViewById(R.id.levelView);
+        levelView.setText("" + level);
         seekBar = (SeekBar) findViewById(R.id.seekBar);
         seekBar.setMax(10);
         seekBar.setProgress(level - 1);
@@ -330,7 +332,9 @@ public class MainActivity extends Activity {
     }
 
     public void viewScores(View view) {
-        startActivity(new Intent(this, HighScoresActivity.class));
+        Intent intent = new Intent(this, HighScoresActivity.class);
+        intent.putExtra("class", 1);
+        startActivity(intent);
     }
 
     public void firstSelected(View view) {
@@ -346,6 +350,8 @@ public class MainActivity extends Activity {
                 seekBar.setProgress(level - 1);
             }
         }
+        TextView levelView = (TextView) findViewById(R.id.levelView);
+        levelView.setText("" + level);
         imageTask = new ImageTask();
         try {
             d = imageTask.execute(level).get();
@@ -394,6 +400,8 @@ public class MainActivity extends Activity {
                 seekBar.setProgress(level - 1);
             }
         }
+        TextView levelView = (TextView) findViewById(R.id.levelView);
+        levelView.setText("" + level);
         imageTask = new ImageTask();
         try {
             d = imageTask.execute(level).get();
@@ -445,6 +453,8 @@ public class MainActivity extends Activity {
                 seekBar.setProgress(level - 1);
             }
         }
+        TextView levelView = (TextView) findViewById(R.id.levelView);
+        levelView.setText("" + level);
         imageTask = new ImageTask();
         try {
             d = imageTask.execute(level).get();
@@ -495,6 +505,8 @@ public class MainActivity extends Activity {
                 seekBar.setProgress(level - 1);
             }
         }
+        TextView levelView = (TextView) findViewById(R.id.levelView);
+        levelView.setText("" + level);
         imageTask = new ImageTask();
         try {
             d = imageTask.execute(level).get();

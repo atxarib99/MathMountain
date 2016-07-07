@@ -27,6 +27,8 @@ public class CountdownActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mainrel);
         level = 1;
+        TextView levelView = (TextView) findViewById(R.id.levelView);
+        levelView.setText("" + level);
         seekBar = (SeekBar) findViewById(R.id.seekBar);
         seekBar.setMax(10);
         seekBar.setProgress(level - 1);
@@ -40,7 +42,7 @@ public class CountdownActivity extends Activity {
         CountdownDatabase handler = new CountdownDatabase(this);
         times = (ArrayList) handler.getAllTeams();
         layout = (RelativeLayout) findViewById(R.id.relativeLayout);
-        layout.setBackgroundColor(Color.BLUE);
+        layout.setBackground(getDrawable(R.drawable.mountainten));
         final TextView timerView = (TextView) findViewById(R.id.fullscreen_content);
         timer = new CountDownTimer(30000, 1000) {
             @Override
@@ -321,7 +323,6 @@ public class CountdownActivity extends Activity {
 
     public void startGame(View view) {
         setClickableButtons(true);
-        layout.setBackgroundColor(Color.BLUE);
         insertQuestion();
         insertQuestion();
         insertQuestion();
@@ -348,6 +349,8 @@ public class CountdownActivity extends Activity {
                 level--;
             }
         }
+        TextView levelView = (TextView) findViewById(R.id.levelView);
+        levelView.setText("" + level);
         TextView questionBox2 = (TextView) findViewById(R.id.questionText2);
         TextView questionBox3 = (TextView) findViewById(R.id.questionText3);
         TextView questionBox = (TextView) findViewById(R.id.questionText);
@@ -368,6 +371,8 @@ public class CountdownActivity extends Activity {
                 level--;
             }
         }
+        TextView levelView = (TextView) findViewById(R.id.levelView);
+        levelView.setText("" + level);
         TextView questionBox2 = (TextView) findViewById(R.id.questionText2);
         TextView questionBox3 = (TextView) findViewById(R.id.questionText3);
         TextView questionBox = (TextView) findViewById(R.id.questionText);
@@ -388,6 +393,8 @@ public class CountdownActivity extends Activity {
                 level--;
             }
         }
+        TextView levelView = (TextView) findViewById(R.id.levelView);
+        levelView.setText("" + level);
         TextView questionBox2 = (TextView) findViewById(R.id.questionText2);
         TextView questionBox3 = (TextView) findViewById(R.id.questionText3);
         TextView questionBox = (TextView) findViewById(R.id.questionText);
@@ -409,6 +416,8 @@ public class CountdownActivity extends Activity {
                 level--;
             }
         }
+        TextView levelView = (TextView) findViewById(R.id.levelView);
+        levelView.setText("" + level);
         TextView questionBox2 = (TextView) findViewById(R.id.questionText2);
         TextView questionBox3 = (TextView) findViewById(R.id.questionText3);
         TextView questionBox = (TextView) findViewById(R.id.questionText);
