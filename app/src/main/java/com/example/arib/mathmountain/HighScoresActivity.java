@@ -29,6 +29,7 @@ public class HighScoresActivity extends AppCompatActivity {
         switch (classFrom) {
             case 1 : times = MainActivity.times; break;
             case 2 : times = CountdownActivity.times; break;
+            case 3 : times = ContinuousActivity.times; break;
             default : times = MainActivity.times; break;
         }
         ArrayAdapter arrayAdapter = new ArrayAdapter(this, R.layout.listview_item, times);
