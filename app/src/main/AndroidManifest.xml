@@ -10,14 +10,15 @@
         android:theme="@style/AppTheme">
         <activity android:name=".MainActivity" />
         <activity android:name=".HighScoresActivity" />
-        <activity android:name=".GameSelectionActivity" >
+        <activity android:name=".GameSelectionActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".CountdownActivity"></activity>
+        <activity android:name=".CountdownActivity" />
+        <activity android:name=".ContinuousActivity"></activity>
     </application>
 
 </manifest>
