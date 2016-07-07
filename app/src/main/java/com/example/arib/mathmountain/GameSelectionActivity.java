@@ -20,7 +20,8 @@ public class GameSelectionActivity extends AppCompatActivity {
     public void countdown(View view) {
         startActivity(new Intent(this, CountdownActivity.class));
     }
-    public void continuous(View view) {
 
+    public void continuous(View view) {
+        startActivity(new Intent(this, ContinuousActivity.class));
     }
 }
