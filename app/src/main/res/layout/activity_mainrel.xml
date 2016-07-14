@@ -52,8 +52,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:textSize="30sp"
+        android:textSize="45sp"
         android:textColor="#ffffff"
+        android:textStyle="bold"
         android:id="@+id/questionText"
         android:layout_centerVertical="true"
         android:layout_centerHorizontal="true" />
@@ -61,8 +62,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:textSize="20sp"
-        android:textColor="#ffffff"
+        android:textSize="18sp"
+        android:textColor="#64ffffff"
         android:id="@+id/questionText2"
         android:layout_centerHorizontal="true"
         android:layout_above="@+id/questionText"/>
@@ -71,7 +72,7 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:textSize="12sp"
-        android:textColor="#ffffff"
+        android:textColor="#64ffffff"
         android:id="@+id/questionText3"
         android:layout_centerHorizontal="true"
         android:layout_above="@+id/questionText2"/>
@@ -98,7 +99,6 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Start"
         android:textColor="#ffffff"
         android:id="@+id/start"
         android:onClick="startGame"
@@ -124,6 +124,17 @@
         android:textSize="30sp"
         android:background="#000000"
         android:textColor="#ffffff" />
+    <Button
+        android:layout_width="140dp"
+        android:layout_height="140dp"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:id="@+id/bigStart"
+        android:text="start"
+        android:textColor="#ffffff"
+        android:textSize="40sp"
+        android:onClick="startGame"
+        android:background="@android:color/transparent" />
 
 
 </RelativeLayout>
