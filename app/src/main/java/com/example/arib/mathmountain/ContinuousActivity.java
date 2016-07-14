@@ -308,6 +308,8 @@ public class ContinuousActivity extends Activity {
         insertQuestion();
         insertQuestion();
         insertQuestion();
+        Button bigButton = (Button) findViewById(R.id.bigStart);
+        bigButton.setVisibility(View.GONE);
         Button button = (Button) findViewById(R.id.start);
         button.setText("Restart");
         level = 1;

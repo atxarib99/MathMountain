@@ -28,11 +28,22 @@ public class MainActivity extends Activity {
     SeekBar seekBar;
     RelativeLayout layout;
     Drawable d;
+//    Drawable backgroundOne = getDrawable(R.drawable.mountainone);
+//    Drawable backgroundTwo = getDrawable(R.drawable.mountaintwo);
+//    Drawable backgroundThree = getDrawable(R.drawable.mountainthree);
+//    Drawable backgroundFour = getDrawable(R.drawable.mountainfour);
+//    Drawable backgroundFive = getDrawable(R.drawable.mountainfive);
+//    Drawable backgroundSix = getDrawable(R.drawable.mountainsix);
+//    Drawable backgroundSeven = getDrawable(R.drawable.mountainseven);
+//    Drawable backgroundEight = getDrawable(R.drawable.mountaineight);
+//    Drawable backgroundNine = getDrawable(R.drawable.mountainnine);
+//    Drawable backgroundTen = getDrawable(R.drawable.mountainten);
     ImageTask imageTask;
     protected static ArrayList<String> times;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_mainrel);
         level = 1;
         TextView levelView = (TextView) findViewById(R.id.levelView);
@@ -324,6 +335,8 @@ public class MainActivity extends Activity {
         insertQuestion();
         insertQuestion();
         insertQuestion();
+        Button bigButton = (Button) findViewById(R.id.bigStart);
+        bigButton.setVisibility(View.GONE);
         Button button = (Button) findViewById(R.id.start);
         button.setText("Restart");
         level = 1;
@@ -543,6 +556,22 @@ public class MainActivity extends Activity {
 
         }
     }
+
+//    private Drawable getBackgroundImage(int level) {
+//        switch (level) {
+//            case 1 : return backgroundOne;
+//            case 2 : return backgroundTwo;
+//            case 3 : return backgroundThree;
+//            case 4 : return backgroundFour;
+//            case 5 : return backgroundFive;
+//            case 6 : return backgroundSix;
+//            case 7 : return backgroundSeven;
+//            case 8 : return backgroundEight;
+//            case 9 : return backgroundNine;
+//            case 10 : return backgroundTen;
+//            default : return backgroundTen;
+//        }
+//    }
 
     private class ImageTask extends AsyncTask<Integer, Void, Drawable> {
         private int level;
