@@ -3,6 +3,7 @@ package com.example.arib.mathmountain;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
+import android.media.MediaPlayer;
 import android.os.CountDownTimer;
 import android.os.Bundle;
 import android.view.MotionEvent;
@@ -21,10 +22,14 @@ public class CountdownActivity extends Activity {
     CountDownTimer timer;
     SeekBar seekBar;
     RelativeLayout layout;
+    MediaPlayer song;
     protected static ArrayList<String> times;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        song = MediaPlayer.create(this, R.raw.song);
+        song.setLooping(true);
+        song.start();
         setContentView(R.layout.activity_mainrel);
         level = 1;
         TextView levelView = (TextView) findViewById(R.id.levelView);
@@ -64,6 +69,18 @@ public class CountdownActivity extends Activity {
             }
         };
 
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        song.stop();
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        song.start();
     }
 
     private void setClickableButtons(boolean b) {
@@ -332,6 +349,8 @@ public class CountdownActivity extends Activity {
         button.setText("Restart");
         level = 1;
         timer.start();
+        if(!song.isPlaying())
+            song.start();
     }
 
     public void viewScores(View view) {

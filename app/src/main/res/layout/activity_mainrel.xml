@@ -8,10 +8,9 @@
         android:layout_width="93dp"
         android:layout_height="100dp"
         android:onClick="firstSelected"
-        android:textColor="#ffffff"
+        android:textColor="#000000"
         android:textSize="20sp"
         android:id="@+id/first_choice"
-        android:background="@android:color/transparent"
         android:layout_alignParentBottom="true"
         android:layout_alignParentStart="true" />
 
@@ -19,10 +18,9 @@
         android:layout_width="93dp"
         android:layout_height="100dp"
         android:onClick="secondSelected"
-        android:textColor="#ffffff"
+        android:textColor="#000000"
         android:textSize="20sp"
         android:id="@+id/second_choice"
-        android:background="@android:color/transparent"
         android:layout_toEndOf="@+id/first_choice"
         android:layout_alignParentBottom="true" />
 
@@ -30,10 +28,9 @@
         android:layout_width="93dp"
         android:layout_height="100dp"
         android:onClick="thirdSelected"
-        android:textColor="#ffffff"
+        android:textColor="#000000"
         android:textSize="20sp"
         android:id="@+id/third_choice"
-        android:background="@android:color/transparent"
         android:layout_alignParentBottom="true"
         android:layout_toStartOf="@+id/fourth_choice" />
 
@@ -41,12 +38,12 @@
         android:layout_width="93dp"
         android:layout_height="100dp"
         android:onClick="fourthSelected"
-        android:textColor="#ffffff"
+        android:textColor="#000000"
         android:textSize="20sp"
         android:id="@+id/fourth_choice"
-        android:background="@android:color/transparent"
         android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true" />
+
 
     <TextView
         android:layout_width="wrap_content"
@@ -125,16 +122,16 @@
         android:background="#000000"
         android:textColor="#ffffff" />
     <Button
-        android:layout_width="140dp"
-        android:layout_height="140dp"
+        android:layout_width="160dp"
+        android:layout_height="160dp"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
         android:id="@+id/bigStart"
         android:text="start"
-        android:textColor="#ffffff"
+        android:textColor="#000000"
         android:textSize="40sp"
         android:onClick="startGame"
-        android:background="@android:color/transparent" />
+        android:background="@drawable/answermountain" />
 
 
 </RelativeLayout>

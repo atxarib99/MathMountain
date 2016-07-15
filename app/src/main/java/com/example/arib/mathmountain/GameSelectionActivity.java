@@ -18,15 +18,30 @@ public class GameSelectionActivity extends AppCompatActivity {
         setContentView(R.layout.activity_game_selection);
     }
 
+    @Override
+    public void onStop() {
+        super.onStop();
+        song.stop();
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        song.start();
+    }
+
     public void speedClimb(View view) {
+        song.stop();
         startActivity(new Intent(this, MainActivity.class));
     }
 
     public void countdown(View view) {
+        song.stop();
         startActivity(new Intent(this, CountdownActivity.class));
     }
 
     public void continuous(View view) {
+        song.stop();
         startActivity(new Intent(this, ContinuousActivity.class));
     }
 }

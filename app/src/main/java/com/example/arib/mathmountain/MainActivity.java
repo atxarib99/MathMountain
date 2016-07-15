@@ -2,7 +2,12 @@ package com.example.arib.mathmountain;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.res.ColorStateList;
+import android.graphics.Bitmap;
+import android.graphics.Color;
+import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
+import android.media.MediaPlayer;
 import android.os.Build;
 import android.os.SystemClock;
 import android.os.Bundle;
@@ -28,6 +33,7 @@ public class MainActivity extends Activity {
     SeekBar seekBar;
     RelativeLayout layout;
     Drawable d;
+    MediaPlayer song;
 //    Drawable backgroundOne = getDrawable(R.drawable.mountainone);
 //    Drawable backgroundTwo = getDrawable(R.drawable.mountaintwo);
 //    Drawable backgroundThree = getDrawable(R.drawable.mountainthree);
@@ -38,14 +44,18 @@ public class MainActivity extends Activity {
 //    Drawable backgroundEight = getDrawable(R.drawable.mountaineight);
 //    Drawable backgroundNine = getDrawable(R.drawable.mountainnine);
 //    Drawable backgroundTen = getDrawable(R.drawable.mountainten);
+    BitmapDrawable mountain;
     ImageTask imageTask;
     protected static ArrayList<String> times;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         setContentView(R.layout.activity_mainrel);
         level = 1;
+        mountain = (BitmapDrawable) getDrawable(R.drawable.answermountain);
+        song = MediaPlayer.create(this, R.raw.song);
+        song.setLooping(true);
+        song.start();
         TextView levelView = (TextView) findViewById(R.id.levelView);
         levelView.setText("" + level);
         seekBar = (SeekBar) findViewById(R.id.seekBar);
@@ -74,14 +84,35 @@ public class MainActivity extends Activity {
 
     }
 
+    @Override
+    public void onStop() {
+        super.onStop();
+        song.stop();
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        song.start();
+    }
+
     private void setClickableButtons(boolean b) {
         TextView questionBox = (TextView) findViewById(R.id.questionText);
         TextView questionBox2 = (TextView) findViewById(R.id.questionText2);
         TextView questionBox3 = (TextView) findViewById(R.id.questionText3);
-        Button first = (Button) findViewById(R.id.first_choice);
-        Button second = (Button) findViewById(R.id.second_choice);
-        Button third = (Button) findViewById(R.id.third_choice);
-        Button fourth = (Button) findViewById(R.id.fourth_choice);
+        final Button first = (Button) findViewById(R.id.first_choice);
+        final Button second = (Button) findViewById(R.id.second_choice);
+        final Button third = (Button) findViewById(R.id.third_choice);
+        final Button fourth = (Button) findViewById(R.id.fourth_choice);
+        this.runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                first.setBackground(mountain);
+                second.setBackground(mountain);
+                third.setBackground(mountain);
+                fourth.setBackground(mountain);
+            }
+        });
         if(b) {
             questionBox.setVisibility(View.VISIBLE);
             questionBox2.setVisibility(View.VISIBLE);
@@ -339,6 +370,8 @@ public class MainActivity extends Activity {
         bigButton.setVisibility(View.GONE);
         Button button = (Button) findViewById(R.id.start);
         button.setText("Restart");
+        if(!song.isPlaying())
+            song.start();
         level = 1;
         chronometer.setBase(SystemClock.elapsedRealtime());
         chronometer.start();
@@ -350,19 +383,41 @@ public class MainActivity extends Activity {
         startActivity(intent);
     }
 
+    private void endGame() {
+        DatabaseHandler handler = new DatabaseHandler(this);
+        handler.addHighScore(chronometer.getText() + "");
+        Button startButton = (Button) findViewById(R.id.start);
+        startButton.setText("Restart");
+        startButton.setVisibility(View.VISIBLE);
+        setClickableButtons(false);
+        seekBar.setProgress(level);
+        startButton.setClickable(true);
+        chronometer.stop();
+        song.stop();
+    }
+
     public void firstSelected(View view) {
-        Button button = (Button) findViewById(R.id.first_choice);
+        final Button button = (Button) findViewById(R.id.first_choice);
         int answer = Integer.parseInt("" + button.getText());
         boolean correct = parseQuestion(answer);
         if(correct) {
             level++;
             seekBar.setProgress(level - 1);
+            this.runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    button.setBackgroundColor(Color.GREEN);
+                    BitmapDrawable bmp = (BitmapDrawable) getDrawable(R.drawable.answermountain);
+                }
+            });
         } else {
             if(level > 1) {
                 level--;
                 seekBar.setProgress(level - 1);
+
             }
         }
+
         TextView levelView = (TextView) findViewById(R.id.levelView);
         levelView.setText("" + level);
         imageTask = new ImageTask();
@@ -387,16 +442,7 @@ public class MainActivity extends Activity {
             insertQuestion();
         }
         else {
-            DatabaseHandler handler = new DatabaseHandler(this);
-            handler.addHighScore(chronometer.getText() + "");
-            Button startButton = (Button) findViewById(R.id.start);
-            startButton.setText("Restart");
-            startButton.setVisibility(View.VISIBLE);
-            setClickableButtons(false);
-            seekBar.setProgress(level);
-            startButton.setClickable(true);
-            chronometer.stop();
-
+            endGame();
         }
     }
 
@@ -407,10 +453,12 @@ public class MainActivity extends Activity {
         if(correct) {
             level++;
             seekBar.setProgress(level - 1);
+
         } else {
             if(level > 1) {
                 level--;
                 seekBar.setProgress(level - 1);
+
             }
         }
         TextView levelView = (TextView) findViewById(R.id.levelView);
@@ -438,17 +486,7 @@ public class MainActivity extends Activity {
             insertQuestion();
         }
         else {
-            DatabaseHandler handler = new DatabaseHandler(this);
-            setClickableButtons(false);
-            handler.addHighScore(chronometer.getText() + "");
-            times = (ArrayList) handler.getAllTeams();
-            Button startButton = (Button) findViewById(R.id.start);
-            startButton.setText("Restart");
-            startButton.setVisibility(View.VISIBLE);
-            startButton.setClickable(true);
-            seekBar.setProgress(level);
-            chronometer.stop();
-            Log.d("getBase", chronometer.getBase() + "");
+            endGame();
 
         }
     }
@@ -460,6 +498,7 @@ public class MainActivity extends Activity {
         if(correct) {
             level++;
             seekBar.setProgress(level - 1);
+            ;
         } else {
             if(level > 1) {
                 level--;
@@ -490,17 +529,7 @@ public class MainActivity extends Activity {
             insertQuestion();
         }
         else {
-            DatabaseHandler handler = new DatabaseHandler(this);
-            handler.addHighScore(chronometer.getText() + "");
-            times = (ArrayList) handler.getAllTeams();
-            Button startButton = (Button) findViewById(R.id.start);
-            startButton.setText("Restart");
-            startButton.setVisibility(View.VISIBLE);
-            setClickableButtons(false);
-            seekBar.setProgress(level);
-            startButton.setClickable(true);
-            chronometer.stop();
-            Log.d("getBase", chronometer.getBase() + "");
+            endGame();
 
         }
     }
@@ -512,10 +541,12 @@ public class MainActivity extends Activity {
         if(correct) {
             level++;
             seekBar.setProgress(level - 1);
+
         } else {
             if(level > 1) {
                 level--;
                 seekBar.setProgress(level - 1);
+
             }
         }
         TextView levelView = (TextView) findViewById(R.id.levelView);
@@ -542,36 +573,10 @@ public class MainActivity extends Activity {
             insertQuestion();
         }
         else {
-            DatabaseHandler handler = new DatabaseHandler(this);
-            handler.addHighScore(chronometer.getText() + "");
-            setClickableButtons(false);
-            times = (ArrayList) handler.getAllTeams();
-            Button startButton = (Button) findViewById(R.id.start);
-            startButton.setText("Restart");
-            startButton.setVisibility(View.VISIBLE);
-            seekBar.setProgress(level);
-            startButton.setClickable(true);
-            chronometer.stop();
-            Log.d("getBase", chronometer.getBase() + "");
+            endGame();
 
         }
     }
-
-//    private Drawable getBackgroundImage(int level) {
-//        switch (level) {
-//            case 1 : return backgroundOne;
-//            case 2 : return backgroundTwo;
-//            case 3 : return backgroundThree;
-//            case 4 : return backgroundFour;
-//            case 5 : return backgroundFive;
-//            case 6 : return backgroundSix;
-//            case 7 : return backgroundSeven;
-//            case 8 : return backgroundEight;
-//            case 9 : return backgroundNine;
-//            case 10 : return backgroundTen;
-//            default : return backgroundTen;
-//        }
-//    }
 
     private class ImageTask extends AsyncTask<Integer, Void, Drawable> {
         private int level;

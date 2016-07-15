@@ -3,6 +3,7 @@ package com.example.arib.mathmountain;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
+import android.media.MediaPlayer;
 import android.os.CountDownTimer;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -21,10 +22,14 @@ public class ContinuousActivity extends Activity {
     private int level;
     SeekBar seekBar;
     RelativeLayout layout;
+    MediaPlayer song;
     protected static ArrayList<String> times;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        song = MediaPlayer.create(this, R.raw.song);
+        song.setLooping(true);
+        song.start();
         setContentView(R.layout.activity_mainrel);
         level = 1;
         TextView levelView = (TextView) findViewById(R.id.levelView);
@@ -313,6 +318,8 @@ public class ContinuousActivity extends Activity {
         Button button = (Button) findViewById(R.id.start);
         button.setText("Restart");
         level = 1;
+        if(!song.isPlaying())
+            song.start();
     }
 
     public void endGame() {
