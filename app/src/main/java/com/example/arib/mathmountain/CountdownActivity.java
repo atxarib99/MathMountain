@@ -2,52 +2,87 @@ package com.example.arib.mathmountain;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.media.MediaPlayer;
+import android.os.AsyncTask;
+import android.os.Build;
 import android.os.CountDownTimer;
 import android.os.Bundle;
-import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
-import android.widget.SeekBar;
 import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.Random;
+import java.util.concurrent.ExecutionException;
 
 //TODO: NEW DATABASE
 public class CountdownActivity extends Activity {
     private int level;
     CountDownTimer timer;
-    SeekBar seekBar;
+    ImageView progressBar;
     RelativeLayout layout;
     MediaPlayer song;
+    Drawable barImage;
+    Thread progressThread;
+    ProgressTask progressTask;
+    boolean running;
     protected static ArrayList<String> times;
+    Runnable progressUpdate = new Runnable() {
+        @Override
+        public void run() {
+            progressTask = new ProgressTask();
+            Random random = new Random();
+            int num = random.nextInt(11);
+            try {
+                barImage = progressTask.execute(num).get();
+            } catch (InterruptedException | ExecutionException e) {
+                e.printStackTrace();
+            }
+            progressBar.setImageDrawable(barImage);
+        }
+    };
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        running = false;
         song = MediaPlayer.create(this, R.raw.song);
         song.setLooping(true);
-        song.start();
+        if(!GameSelectionActivity.MUTED)
+            song.start();
+        else
+            song.stop();
         setContentView(R.layout.activity_mainrel);
         level = 1;
-        TextView levelView = (TextView) findViewById(R.id.levelView);
-        levelView.setText("" + level);
-        seekBar = (SeekBar) findViewById(R.id.seekBar);
-        seekBar.setMax(10);
-        seekBar.setProgress(level - 1);
-        seekBar.setOnTouchListener(new View.OnTouchListener() {
+        progressThread = new Thread(new Runnable() {
             @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                return true;
+            public void run() {
+                while(running) {
+                    runOnUiThread(progressUpdate);
+                }
+
+                try {
+                    Thread.sleep(1000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
             }
         });
+        TextView levelView = (TextView) findViewById(R.id.levelView);
+        levelView.setText("" + level);
+        progressBar = (ImageView) findViewById(R.id.progressBar);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            progressBar.setImageDrawable(getDrawable(R.drawable.progresszero));
+        }
         setClickableButtons(false);
         CountdownDatabase handler = new CountdownDatabase(this);
         times = (ArrayList) handler.getAllTeams();
         layout = (RelativeLayout) findViewById(R.id.relativeLayout);
-        layout.setBackground(getDrawable(R.drawable.mountainten));
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            layout.setBackground(getDrawable(R.drawable.mountainten));
+        }
         final TextView timerView = (TextView) findViewById(R.id.fullscreen_content);
         timer = new CountDownTimer(30000, 1000) {
             @Override
@@ -64,8 +99,9 @@ public class CountdownActivity extends Activity {
                 Button startButton = (Button) findViewById(R.id.start);
                 startButton.setText("Restart");
                 startButton.setVisibility(View.VISIBLE);
-                seekBar.setProgress(level);
+                running = false;
                 startButton.setClickable(true);
+                progressThread.interrupt();
             }
         };
 
@@ -348,9 +384,11 @@ public class CountdownActivity extends Activity {
         Button button = (Button) findViewById(R.id.start);
         button.setText("Restart");
         level = 1;
+        running = true;
         timer.start();
-        if(!song.isPlaying())
+        if(!song.isPlaying() && !GameSelectionActivity.MUTED)
             song.start();
+        progressThread.start();
     }
 
     public void viewScores(View view) {
@@ -446,6 +484,38 @@ public class CountdownActivity extends Activity {
         questionBox2.setText(questionBox3.getText());
         questionBox3.setText("");
         insertQuestion();
+    }
+
+    private class ProgressTask extends AsyncTask<Integer, Void, Drawable> {
+        private int level;
+        public ProgressTask() {
+
+        }
+
+        @Override
+        protected Drawable doInBackground(Integer... params) {
+            level = params[0];
+            Drawable drawable = getProgressImage(level);
+            return drawable;
+        }
+
+        private Drawable getProgressImage(int level) {
+            switch (level) {
+                case 1 : return getDrawable(R.drawable.progressone);
+                case 2 : return getDrawable(R.drawable.progresstwo);
+                case 3 : return getDrawable(R.drawable.progressthree);
+                case 4 : return getDrawable(R.drawable.progressfour);
+                case 5 : return getDrawable(R.drawable.progressfive);
+                case 6 : return getDrawable(R.drawable.progresssix);
+                case 7 : return getDrawable(R.drawable.progressseven);
+                case 8 : return getDrawable(R.drawable.progresseight);
+                case 9 : return getDrawable(R.drawable.progressnine);
+                case 10: return getDrawable(R.drawable.progressten);
+                default : return getDrawable(R.drawable.progresszero);
+            }
+
+        }
+
     }
 
 

@@ -2,47 +2,76 @@ package com.example.arib.mathmountain;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.media.MediaPlayer;
-import android.os.CountDownTimer;
-import android.support.v7.app.AppCompatActivity;
+import android.os.AsyncTask;
 import android.os.Bundle;
-import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
-import android.widget.SeekBar;
 import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.Random;
+import java.util.concurrent.ExecutionException;
 
 public class ContinuousActivity extends Activity {
 
     private int level;
-    SeekBar seekBar;
+    ImageView progressBar;
     RelativeLayout layout;
     MediaPlayer song;
+    Drawable barImage;
+    Thread progressThread;
+    boolean running;
     protected static ArrayList<String> times;
+    ProgressTask progressTask;
+    Runnable progressUpdate = new Runnable() {
+        @Override
+        public void run() {
+            progressTask = new ProgressTask();
+            Random random = new Random();
+            int num = random.nextInt(11);
+            try {
+                barImage = progressTask.execute(num).get();
+            } catch (InterruptedException | ExecutionException e) {
+                e.printStackTrace();
+            }
+            progressBar.setImageDrawable(barImage);
+        }
+    };
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        running = false;
         song = MediaPlayer.create(this, R.raw.song);
         song.setLooping(true);
-        song.start();
+        if(!GameSelectionActivity.MUTED)
+            song.start();
+        else {
+            song.stop();
+        }
+        progressThread = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                while(running) {
+                    runOnUiThread(progressUpdate);
+                }
+
+                try {
+                    Thread.sleep(1000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
         setContentView(R.layout.activity_mainrel);
         level = 1;
         TextView levelView = (TextView) findViewById(R.id.levelView);
         levelView.setText("" + level);
-        seekBar = (SeekBar) findViewById(R.id.seekBar);
-        seekBar.setMax(10);
-        seekBar.setProgress(level - 1);
-        seekBar.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                return true;
-            }
-        });
+        progressBar = (ImageView) findViewById(R.id.progressBar);
+        progressBar.setImageDrawable(getDrawable(R.drawable.progresszero));
         setClickableButtons(false);
         CountdownDatabase handler = new CountdownDatabase(this);
         times = (ArrayList) handler.getAllTeams();
@@ -313,12 +342,13 @@ public class ContinuousActivity extends Activity {
         insertQuestion();
         insertQuestion();
         insertQuestion();
+        running = true;
         Button bigButton = (Button) findViewById(R.id.bigStart);
         bigButton.setVisibility(View.GONE);
         Button button = (Button) findViewById(R.id.start);
         button.setText("Restart");
         level = 1;
-        if(!song.isPlaying())
+        if(!song.isPlaying() && !GameSelectionActivity.MUTED)
             song.start();
     }
 
@@ -330,7 +360,7 @@ public class ContinuousActivity extends Activity {
         Button startButton = (Button) findViewById(R.id.start);
         startButton.setText("Restart");
         startButton.setVisibility(View.VISIBLE);
-        seekBar.setProgress(level);
+        running = false;
         startButton.setClickable(true);
     }
 
@@ -419,5 +449,37 @@ public class ContinuousActivity extends Activity {
         questionBox2.setText(questionBox3.getText());
         questionBox3.setText("");
         insertQuestion();
+    }
+
+    private class ProgressTask extends AsyncTask<Integer, Void, Drawable> {
+        private int level;
+        public ProgressTask() {
+
+        }
+
+        @Override
+        protected Drawable doInBackground(Integer... params) {
+            level = params[0];
+            Drawable drawable = getProgressImage(level);
+            return drawable;
+        }
+
+        private Drawable getProgressImage(int level) {
+            switch (level) {
+                case 1 : return getDrawable(R.drawable.progressone);
+                case 2 : return getDrawable(R.drawable.progresstwo);
+                case 3 : return getDrawable(R.drawable.progressthree);
+                case 4 : return getDrawable(R.drawable.progressfour);
+                case 5 : return getDrawable(R.drawable.progressfive);
+                case 6 : return getDrawable(R.drawable.progresssix);
+                case 7 : return getDrawable(R.drawable.progressseven);
+                case 8 : return getDrawable(R.drawable.progresseight);
+                case 9 : return getDrawable(R.drawable.progressnine);
+                case 10: return getDrawable(R.drawable.progressten);
+                default : return getDrawable(R.drawable.progresszero);
+            }
+
+        }
+
     }
 }

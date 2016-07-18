@@ -8,8 +8,9 @@
         android:layout_width="93dp"
         android:layout_height="100dp"
         android:onClick="firstSelected"
-        android:textColor="#000000"
+        android:textColor="#ffffff"
         android:textSize="20sp"
+        android:background="@android:color/transparent"
         android:id="@+id/first_choice"
         android:layout_alignParentBottom="true"
         android:layout_alignParentStart="true" />
@@ -18,8 +19,9 @@
         android:layout_width="93dp"
         android:layout_height="100dp"
         android:onClick="secondSelected"
-        android:textColor="#000000"
+        android:textColor="#ffffff"
         android:textSize="20sp"
+        android:background="@android:color/transparent"
         android:id="@+id/second_choice"
         android:layout_toEndOf="@+id/first_choice"
         android:layout_alignParentBottom="true" />
@@ -28,7 +30,8 @@
         android:layout_width="93dp"
         android:layout_height="100dp"
         android:onClick="thirdSelected"
-        android:textColor="#000000"
+        android:textColor="#ffffff"
+        android:background="@android:color/transparent"
         android:textSize="20sp"
         android:id="@+id/third_choice"
         android:layout_alignParentBottom="true"
@@ -38,7 +41,8 @@
         android:layout_width="93dp"
         android:layout_height="100dp"
         android:onClick="fourthSelected"
-        android:textColor="#000000"
+        android:background="@android:color/transparent"
+        android:textColor="#ffffff"
         android:textSize="20sp"
         android:id="@+id/fourth_choice"
         android:layout_alignParentBottom="true"
@@ -74,14 +78,20 @@
         android:layout_centerHorizontal="true"
         android:layout_above="@+id/questionText2"/>
 
-    <SeekBar
-        android:layout_width="wrap_content"
+    <ImageView
+        android:layout_width="match_parent"
         android:layout_height="40dp"
-        android:id="@+id/seekBar"
-        android:saveEnabled="false"
+        android:id="@+id/progressBar"
         android:layout_alignParentTop="true"
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/endImage"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true" />
 
     <Chronometer
         android:layout_width="wrap_content"
@@ -90,7 +100,7 @@
         android:textSize="20sp"
         android:textColor="#ffffff"
         android:background="#000000"
-        android:layout_below="@+id/seekBar"
+        android:layout_below="@+id/progressBar"
         android:layout_centerHorizontal="true" />
 
     <Button
@@ -100,7 +110,7 @@
         android:id="@+id/start"
         android:onClick="startGame"
         android:background="@android:color/transparent"
-        android:layout_below="@+id/seekBar"
+        android:layout_below="@+id/progressBar"
         android:layout_alignParentStart="true" />
     <Button
         android:layout_width="wrap_content"
@@ -117,7 +127,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/levelView"
         android:layout_alignParentEnd="true"
-        android:layout_below="@+id/seekBar"
+        android:layout_below="@+id/progressBar"
         android:textSize="30sp"
         android:background="#000000"
         android:textColor="#ffffff" />
@@ -132,6 +142,13 @@
         android:textSize="40sp"
         android:onClick="startGame"
         android:background="@drawable/answermountain" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/goodImage"
+        android:layout_below="@+id/highscores"
+        android:layout_alignEnd="@+id/fourth_choice" />
 
 
 </RelativeLayout>
