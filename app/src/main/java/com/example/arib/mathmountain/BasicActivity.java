@@ -18,6 +18,8 @@ import java.util.concurrent.ExecutionException;
 
 /**
  * Created by Arib on 7/21/2016.
+ * Although this class is an activity. It is abstract and is never started. It only holds the basic
+ * functions and methods such as creating questions and generating answers for them.
  */
 public abstract class BasicActivity extends Activity {
 
@@ -50,7 +52,19 @@ public abstract class BasicActivity extends Activity {
             runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
+                    goodImage.setVisibility(View.VISIBLE);
                     goodImage.setImageDrawable(image);
+                }
+            });
+            try {
+                Thread.sleep(1500);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    goodImage.setVisibility(View.GONE);
                 }
             });
         }
@@ -304,7 +318,6 @@ public abstract class BasicActivity extends Activity {
         TextView questionBox2 = (TextView) findViewById(R.id.questionText2);
         TextView questionBox3 = (TextView) findViewById(R.id.questionText3);
         TextView questionBox = (TextView) findViewById(R.id.questionText);
-        resetColors();
         if(questionBox3.getText().equals("")) {
             questionBox3.setText(question);
         } else if(questionBox2.getText().equals("")) {
