@@ -1,3 +1,6 @@
 <resources>
     <string name="app_name">MathMountain</string>
+    <string name="speeddescription">How fast can you complete 10 problems?\nComplete 10 problems correctly as fast as you can! Move up the mountain every time you answer a question successfully. Be careful not to miss a question or you will have to take one step down! Race your friends to see who can have the fastest time!</string>
+    <string name="avalanchedescription">The mountain will crumble in 30 seconds!\nHow high can you make it up the mountain before it crumbles? The timer will be set to 30 seconds, your duty is to make it as high up the mountain as you can! Challenge your friends to see how high you can make it in 30 seconds.</string>
+    <string name="everestdescription">How high up the biggest mountain can you go\nMount Everest is the biggest mountain in the world! There is no time limit but the mountain gets rapidly steeper! Will you reach the peak of the everlasting mountain? Of course not but see how high you can get! Beware: One missed step ruins it all!</string>
 </resources>

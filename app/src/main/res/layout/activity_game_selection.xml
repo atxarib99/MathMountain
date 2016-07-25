@@ -7,18 +7,17 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    android:background="#3F47CB"
+    android:background="@drawable/mountainbackground"
     tools:context="com.example.arib.mathmountain.GameSelectionActivity">
 
-    <TextView
+
+    <ImageView
+        android:id="@+id/logoText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Choose A GameMode"
-        android:textColor="@android:color/white"
-        android:id="@+id/textView"
         android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerVertical="true"
+        android:src="@drawable/mathmountaintext"/>
 
     <Button
         android:layout_width="wrap_content"
@@ -26,9 +25,9 @@
         android:text="Speed Climb"
         android:onClick="speedClimb"
         android:id="@+id/speedClimb"
-        android:layout_below="@+id/textView"
+        android:layout_below="@+id/logoText"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="40dp" />
+        android:layout_marginTop="00dp" />
 
     <Button
         android:layout_width="wrap_content"
@@ -53,7 +52,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textColor="#ffffff"
+        android:textColor="#000000"
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:text="Complete 10 problems correctly as fast as you can! Move up the mountain with correct answers and down with incorrect."
         android:id="@+id/textView2"
@@ -64,7 +63,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceSmall"
-        android:textColor="#ffffff"
+        android:textColor="#000000"
         android:text="Complete as many problems as you can in 30 seconds! Increase your score with correct answers and receive a penalty for incorrect ones."
         android:id="@+id/textView3"
         android:layout_below="@+id/countdown"
@@ -74,7 +73,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceSmall"
-        android:textColor="#ffffff"
+        android:textColor="#000000"
         android:text="Mount Everest is the largest mountain in the world! Climb the infinite mountain by answering the questions correctly. See how high you can make it before missing a question."
         android:id="@+id/textView4"
         android:layout_below="@+id/continuous"

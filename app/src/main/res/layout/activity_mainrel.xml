@@ -9,7 +9,7 @@
         android:layout_height="100dp"
         android:onClick="firstSelected"
         android:textColor="#ffffff"
-        android:textSize="20sp"
+        android:textSize="30sp"
         android:id="@+id/first_choice"
         android:background="#7d535cca"
         android:layout_alignParentBottom="true"
@@ -20,7 +20,7 @@
         android:layout_height="100dp"
         android:onClick="secondSelected"
         android:textColor="#ffffff"
-        android:textSize="20sp"
+        android:textSize="30sp"
         android:background="#7d535cca"
         android:id="@+id/second_choice"
         android:layout_toEndOf="@+id/first_choice"
@@ -32,7 +32,7 @@
         android:onClick="thirdSelected"
         android:textColor="#ffffff"
         android:background="#7d535cca"
-        android:textSize="20sp"
+        android:textSize="30sp"
         android:id="@+id/third_choice"
         android:layout_alignParentBottom="true"
         android:layout_toStartOf="@+id/fourth_choice" />
@@ -43,19 +43,22 @@
         android:onClick="fourthSelected"
         android:background="#7d535cca"
         android:textColor="#ffffff"
-        android:textSize="20sp"
+        android:textSize="30sp"
         android:id="@+id/fourth_choice"
         android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true" />
 
 
     <TextView
+        android:paddingStart="12dp"
+        android:paddingEnd="12dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:textSize="45sp"
         android:textColor="#ffffff"
         android:textStyle="bold"
+        android:background="@drawable/questionborder"
         android:id="@+id/questionText"
         android:layout_centerVertical="true"
         android:layout_centerHorizontal="true" />

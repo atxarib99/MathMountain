@@ -4,8 +4,12 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.media.MediaPlayer;
+import android.service.notification.StatusBarNotification;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.view.menu.ActionMenuItemView;
@@ -13,6 +17,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 public class GameSelectionActivity extends AppCompatActivity {
@@ -90,6 +95,12 @@ public class GameSelectionActivity extends AppCompatActivity {
         } else {
             song.stop();
         }
+        ActionBar actionBar = getSupportActionBar();
+        if (actionBar != null) {
+            actionBar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#102759")));
+        } else {
+            Log.d("ActionBar", "Error ActionBar was null");
+        }
         setContentView(R.layout.activity_game_selection);
     }
 
@@ -115,7 +126,7 @@ public class GameSelectionActivity extends AppCompatActivity {
                 MUTED = false;
                 mediaThread = new Thread(startMedia);
                 mediaThread.start();
-                Toast.makeText(this, "Game unmuted", Toast.LENGTH_LONG).show();
+                Toast.makeText(this, "Game unmuted", Toast.LENGTH_SHORT).show();
                 prefThread = new Thread(saveUnmute);
                 prefThread.start();
                 this.runOnUiThread(toggle);
@@ -123,12 +134,17 @@ public class GameSelectionActivity extends AppCompatActivity {
                 MUTED = true;
                 mediaThread = new Thread(stopMedia);
                 mediaThread.start();
-                Toast.makeText(this, "Game muted", Toast.LENGTH_LONG).show();
+                Toast.makeText(this, "Game muted", Toast.LENGTH_SHORT).show();
                 prefThread = new Thread(saveMute);
                 prefThread.start();
                 this.runOnUiThread(toggle);
             }
             return true;
+        }
+
+        if(id == R.id.action_info) {
+            song.stop();
+            startActivity(new Intent(this, DescriptionActivity.class));
         }
 
         return super.onOptionsItemSelected(item);

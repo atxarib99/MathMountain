@@ -6,4 +6,8 @@
         android:icon="@drawable/unmuteicon"
         android:orderInCategory="100"
         app:showAsAction="always" />
+    <item android:id="@+id/action_info"
+        android:title="Help"
+        android:orderInCategory="99"
+        app:showAsAction="ifRoom" />
 </menu>

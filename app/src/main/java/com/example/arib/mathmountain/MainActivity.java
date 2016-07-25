@@ -48,6 +48,10 @@ public class MainActivity extends BasicActivity {
                 progressBar.setImageDrawable(barImage);
             }
         };
+        right = MediaPlayer.create(this, R.raw.right);
+        right.setLooping(false);
+        wrong = MediaPlayer.create(this, R.raw.wrong);
+        wrong.setLooping(false);
         song = MediaPlayer.create(this, R.raw.song);
         song.setLooping(true);
         if(!GameSelectionActivity.MUTED)
@@ -150,6 +154,7 @@ public class MainActivity extends BasicActivity {
         level = 1;
         chronometer.setBase(SystemClock.elapsedRealtime());
         chronometer.start();
+        buttonFlash();
     }
 
     public void viewScores(View view) {
@@ -173,6 +178,9 @@ public class MainActivity extends BasicActivity {
             }
         });
         startButton.setClickable(true);
+        Button bigButton = (Button) findViewById(R.id.bigStart);
+        bigButton.setText("RESTART");
+        bigButton.setVisibility(View.VISIBLE);
         chronometer.stop();
         song.stop();
         ImageView endImage = (ImageView) findViewById(R.id.endImage);
@@ -210,10 +218,12 @@ public class MainActivity extends BasicActivity {
             });
             flashThread.start();
             displayGood();
+            right.start();
         } else {
             if(level > 1) {
                 level--;
             }
+            wrong.start();
             flashThread = new Thread(new Runnable() {
                 @Override
                 public void run() {
@@ -303,12 +313,13 @@ public class MainActivity extends BasicActivity {
                 }
             });
             flashThread.start();
-            goodThread = new Thread(imageUpdate);
-            goodThread.start();
+            displayGood();
+            right.start();
         } else {
             if(level > 1) {
                 level--;
             }
+            wrong.start();
             flashThread = new Thread(new Runnable() {
                 @Override
                 public void run() {
@@ -399,12 +410,13 @@ public class MainActivity extends BasicActivity {
                 }
             });
             flashThread.start();
-            goodThread = new Thread(imageUpdate);
-            goodThread.start();
+            displayGood();
+            right.start();
         } else {
             if(level > 1) {
                 level--;
             }
+            wrong.start();
             flashThread = new Thread(new Runnable() {
                 @Override
                 public void run() {
@@ -494,14 +506,14 @@ public class MainActivity extends BasicActivity {
                 }
             });
             flashThread.start();
-            goodThread = new Thread(imageUpdate);
-            goodThread.start();
-
+            displayGood();
+            right.start();
         } else {
             if(level > 1) {
                 level--;
 
             }
+            wrong.start();
             flashThread = new Thread(new Runnable() {
                 @Override
                 public void run() {
