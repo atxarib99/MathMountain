@@ -11,7 +11,7 @@
         android:textColor="#ffffff"
         android:textSize="30sp"
         android:id="@+id/first_choice"
-        android:background="#7d535cca"
+        android:background="#b5535cca"
         android:layout_alignParentBottom="true"
         android:layout_alignParentStart="true" />
 
@@ -21,7 +21,7 @@
         android:onClick="secondSelected"
         android:textColor="#ffffff"
         android:textSize="30sp"
-        android:background="#7d535cca"
+        android:background="#b5535cca"
         android:id="@+id/second_choice"
         android:layout_toEndOf="@+id/first_choice"
         android:layout_alignParentBottom="true" />
@@ -31,7 +31,7 @@
         android:layout_height="100dp"
         android:onClick="thirdSelected"
         android:textColor="#ffffff"
-        android:background="#7d535cca"
+        android:background="#b5535cca"
         android:textSize="30sp"
         android:id="@+id/third_choice"
         android:layout_alignParentBottom="true"
@@ -41,7 +41,7 @@
         android:layout_width="93dp"
         android:layout_height="100dp"
         android:onClick="fourthSelected"
-        android:background="#7d535cca"
+        android:background="#b5535cca"
         android:textColor="#ffffff"
         android:textSize="30sp"
         android:id="@+id/fourth_choice"
@@ -86,15 +86,15 @@
         android:layout_height="40dp"
         android:id="@+id/progressBar"
         android:layout_alignParentTop="true"
-        android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true" />
 
     <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="160dp"
+        android:layout_height="50dp"
         android:id="@+id/endImage"
-        android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_alignTop="@+id/highscores"
+        android:layout_alignParentEnd="true"
+        android:layout_alignEnd="@+id/fourth_choice" />
 
     <Chronometer
         android:layout_width="wrap_content"
@@ -142,7 +142,7 @@
         android:id="@+id/bigStart"
         android:text="start"
         android:textColor="#000000"
-        android:textSize="40sp"
+        android:textSize="35sp"
         android:onClick="startGame"
         android:background="@drawable/answermountain" />
 

@@ -211,7 +211,7 @@ public class MainActivity extends BasicActivity {
                     runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-                            button.setBackgroundColor(Color.parseColor("#7d535cca"));
+                            button.setBackgroundColor(Color.parseColor("#b5535cca"));
                         }
                     });
                 }
@@ -241,7 +241,7 @@ public class MainActivity extends BasicActivity {
                     runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-                            button.setBackgroundColor(Color.parseColor("#7d535cca"));
+                            button.setBackgroundColor(Color.parseColor("#b5535cca"));
                         }
                     });
                 }
@@ -307,7 +307,7 @@ public class MainActivity extends BasicActivity {
                     runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-                            button.setBackgroundColor(Color.parseColor("#7d535cca"));
+                            button.setBackgroundColor(Color.parseColor("#b5535cca"));
                         }
                     });
                 }
@@ -337,7 +337,7 @@ public class MainActivity extends BasicActivity {
                     runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-                            button.setBackgroundColor(Color.parseColor("#7d535cca"));
+                            button.setBackgroundColor(Color.parseColor("#b5535cca"));
                         }
                     });
                 }
@@ -404,7 +404,7 @@ public class MainActivity extends BasicActivity {
                     runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-                            button.setBackgroundColor(Color.parseColor("#7d535cca"));
+                            button.setBackgroundColor(Color.parseColor("#b5535cca"));
                         }
                     });
                 }
@@ -434,7 +434,7 @@ public class MainActivity extends BasicActivity {
                     runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-                            button.setBackgroundColor(Color.parseColor("#7d535cca"));
+                            button.setBackgroundColor(Color.parseColor("#b5535cca"));
                         }
                     });
                 }
@@ -500,7 +500,7 @@ public class MainActivity extends BasicActivity {
                     runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-                            button.setBackgroundColor(Color.parseColor("#7d535cca"));
+                            button.setBackgroundColor(Color.parseColor("#b5535cca"));
                         }
                     });
                 }
@@ -531,7 +531,7 @@ public class MainActivity extends BasicActivity {
                     runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-                            button.setBackgroundColor(Color.parseColor("#7d535cca"));
+                            button.setBackgroundColor(Color.parseColor("#b5535cca"));
                         }
                     });
                 }
